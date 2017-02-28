@@ -31,6 +31,4 @@ namespace Painter
             spriteBatch.End();
         }
     }
-
-    
 }
