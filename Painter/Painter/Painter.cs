@@ -44,7 +44,9 @@ namespace Painter
                 this.Exit();
 
             // TODO: Add your update logic here
-
+            InputHelper inputHelper;
+            inputHelper = new InputHelper();
+            inputHelper.Update();
             base.Update(gameTime);
         }
 
