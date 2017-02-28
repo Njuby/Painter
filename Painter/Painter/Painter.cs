@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
+
 namespace Painter
 {
     
@@ -17,17 +18,22 @@ namespace Painter
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         static GameWorld gameWorld;
+        InputHelper inputHelper;
+        
+        //static public GameWorld <Name> { get { return <instruction/expression>; }}
+
 
         public Painter()
         {
+            IsMouseVisible = true;           
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
-
+       
         protected override void Initialize()
         {
+            inputHelper = new InputHelper();
             // TODO: Add your initialization logic here
-
             base.Initialize();
         }
 
@@ -44,10 +50,11 @@ namespace Painter
                 this.Exit();
 
             // TODO: Add your update logic here
-            InputHelper inputHelper;
-            inputHelper = new InputHelper();
+
+            gameWorld.HandleInput(inputHelper);
             inputHelper.Update();
             base.Update(gameTime);
+            
         }
 
         protected override void LoadContent()

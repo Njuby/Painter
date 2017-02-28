@@ -20,9 +20,10 @@ namespace Painter
         public Cannon cannon;
 
         ///////////////
-        public GameWorld(ContentManager contentmanager)
+        public GameWorld(ContentManager content)
         {
-            background = contentmanager.Load<Texture2D>("spr_background");
+            background = content.Load<Texture2D>("spr_background");
+            cannon = new Cannon(content);
         }
         //Call cannon class
         public Cannon Cannon
@@ -33,9 +34,13 @@ namespace Painter
         {
             spriteBatch.Begin();
             spriteBatch.Draw(background, Vector2.Zero, Color.White);
+            cannon.Draw(gameTime, spriteBatch); 
             spriteBatch.End();
         }
 
-        
+        public void HandleInput(InputHelper inputHelper)
+        {
+            cannon.HandleInput(inputHelper);
+        }
     }
 }
