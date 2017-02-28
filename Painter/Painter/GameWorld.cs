@@ -17,18 +17,25 @@ namespace Painter
     class GameWorld
     {
         public Texture2D background;
+        public Cannon cannon;
 
         ///////////////
         public GameWorld(ContentManager contentmanager)
         {
             background = contentmanager.Load<Texture2D>("spr_background");
         }
-
+        //Call cannon class
+        public Cannon Cannon
+        {
+            get { return cannon; }
+        }
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();
             spriteBatch.Draw(background, Vector2.Zero, Color.White);
             spriteBatch.End();
         }
+
+        
     }
 }
