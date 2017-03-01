@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Painter
 {
-    class Cannon : ThreeColorGameObject
+    public class Cannon : ThreeColorGameObject
     {
         protected Texture2D cannonBarrel;
         protected float angle;                //////

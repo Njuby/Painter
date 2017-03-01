@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Painter
 {
-    class InputHelper
+    public class InputHelper
     {
         MouseState currentMouseState;
         MouseState previousMouseState;
@@ -23,11 +23,14 @@ namespace Painter
             currentMouseState = Mouse.GetState();
             previousKeyboardState = currentKeyboardState;
             currentKeyboardState = Keyboard.GetState();
-        }        //get mouse position
+        }
+        //get mouse position
         public Vector2 MousePosition
         {
             get { return new Vector2(currentMouseState.X, currentMouseState.Y); }
-        }        //mouse state        public bool MouseLeftButtonPressed()
+        }
+        //mouse state
+        public bool MouseLeftButtonPressed()
         {
             return currentMouseState.LeftButton == ButtonState.Pressed
            && previousMouseState.LeftButton == ButtonState.Released;
@@ -36,6 +39,7 @@ namespace Painter
         public bool KeyPressed(Keys k)
         {
             return currentKeyboardState.IsKeyDown(k) && previousKeyboardState.IsKeyUp(k);
-        }
+        }
+
     }
 }

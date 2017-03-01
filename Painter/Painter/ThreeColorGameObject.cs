@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Content;
 
 namespace Painter
 {
-    class ThreeColorGameObject
+    public class ThreeColorGameObject
     {
         //declare variables
         protected Texture2D colorRed, colorGreen, colorBlue;
@@ -25,6 +25,7 @@ namespace Painter
             this.colorGreen = colorGreen;
             this.colorBlue = colorBlue;
             color = Color.Blue;
+            currentColor = colorBlue;
             position = Vector2.Zero;
             velocity = Vector2.Zero;
         }

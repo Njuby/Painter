@@ -19,17 +19,29 @@ namespace Painter
         SpriteBatch spriteBatch;
         static GameWorld gameWorld;
         InputHelper inputHelper;
+
+        //get color from cannon
+        /*static public Color colortype { get 
+            { 
+                return gameWorld.Cannon.Color; 
+            }
+                }
+                */
+
         
-        //static public GameWorld <Name> { get { return <instruction/expression>; }}
 
 
         public Painter()
         {
-            IsMouseVisible = true;           
+            IsMouseVisible = true;
+           
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
-       
+
+        static public GameWorld GameWorld { get { return gameWorld; } }
+
+    
         protected override void Initialize()
         {
             inputHelper = new InputHelper();
