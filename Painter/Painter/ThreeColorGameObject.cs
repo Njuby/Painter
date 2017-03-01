@@ -2,23 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Content;
-
-
 namespace Painter
 {
     public class ThreeColorGameObject
     {
-        //declare variables
         protected Texture2D colorRed, colorGreen, colorBlue;
         protected Texture2D currentColor;
         protected Vector2 position, velocity;
         protected Color color;
-        //////////
-        //3k possible colors
+
         public ThreeColorGameObject(Texture2D colorRed, Texture2D colorGreen, Texture2D colorBlue)
         {
             this.colorRed = colorRed;
@@ -29,7 +23,6 @@ namespace Painter
             position = Vector2.Zero;
             velocity = Vector2.Zero;
         }
-        //properties
         public Color Color
         {
             get { return color; }
@@ -46,9 +39,17 @@ namespace Painter
                     currentColor = colorBlue;
             }
         }
-        //overwritabl parts of the class
+        public Vector2 Center
+        {
+            get { return new Vector2(currentColor.Width, currentColor.Height) / 2; }
+        }
+        public Vector2 Position
+        {
+            get { return position; }
+        }
         public virtual void HandleInput(InputHelper inputHelper)
         {
+
         }
         public virtual void Update(GameTime gameTime)
         {
@@ -61,14 +62,6 @@ namespace Painter
         public virtual void Reset()
         {
             Color = Color.Blue;
-        }        //centr of sprite
-        public Vector2 Center
-        {
-            get { return new Vector2(currentColor.Width, currentColor.Height) / 2; }
-        }
-        public Vector2 Position
-        {
-            get { return position; }
         }
     }
 }

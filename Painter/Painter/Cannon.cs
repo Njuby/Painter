@@ -2,33 +2,32 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
 
+//jjjjjj
 namespace Painter
 {
     public class Cannon : ThreeColorGameObject
     {
         protected Texture2D cannonBarrel;
-        protected float angle;                //////
-        //give color to barrel and draw the sprite(color)
-        public Cannon(ContentManager content)
-        : base(content.Load<Texture2D>("spr_cannon_red"),
-        content.Load<Texture2D>("spr_cannon_green"),
-        content.Load<Texture2D>("spr_cannon_blue"))
+        protected float angle;
+        Vector2 barrelOrigin, colorOrigin;
+        public Cannon(ContentManager content) :
+            base(content.Load<Texture2D>("spr_cannon_red"),
+                content.Load<Texture2D>("spr_cannon_green"),
+                content.Load<Texture2D>("spr_cannon_blue"))
         {
             cannonBarrel = content.Load<Texture2D>("spr_cannon_barrel");
             currentColor = colorBlue;
             position = new Vector2(72, 405);
-            
+            barrelOrigin = new Vector2(cannonBarrel.Height, cannonBarrel.Height) / 2;
+            colorOrigin = new Vector2(currentColor.Width, currentColor.Height) / 2;
         }
-
         public override void HandleInput(InputHelper inputHelper)
         {
-
             if (inputHelper.KeyPressed(Keys.R))
                 Color = Color.Red;
             else if (inputHelper.KeyPressed(Keys.G))
@@ -40,20 +39,6 @@ namespace Painter
             double adjacent = inputHelper.MousePosition.X - position.X;
             angle = (float)Math.Atan2(opposite, adjacent);
         }
-
-        //draw the barrel using the overwrite function
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(cannonBarrel, position, null, Color.White, angle, new Vector2(34, 34), 1.0f, SpriteEffects.None, 0);
-            spriteBatch.Draw(currentColor, position - new Vector2(currentColor.Width,currentColor.Height) / 2, Color.White);
-        }
-        //overrite reset emthode
-        public override void Reset()
-        {
-            base.Reset();
-            angle = 0f;
-        }
-        //bereken bal startpunt
         public Vector2 BallPosition
         {
             get
@@ -62,6 +47,19 @@ namespace Painter
                 float adjacent = (float)Math.Cos(angle) * cannonBarrel.Width * 0.6f;
                 return position + new Vector2(adjacent, opposite);
             }
+        }
+
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(cannonBarrel, position, null, Color.White, angle, barrelOrigin, 1.0f, SpriteEffects.None, 0);
+            spriteBatch.Draw(currentColor, position, null, Color.White, 0f, colorOrigin, 1.0f, SpriteEffects.None, 0);
+        }
+        public override void Reset()
+        {
+            base.Reset();
+            angle = 0f;
+
+
         }
     }
 }
