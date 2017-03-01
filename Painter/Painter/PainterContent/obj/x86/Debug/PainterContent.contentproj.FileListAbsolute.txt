@@ -1,1 +1,2 @@
 c:\users\sande\onedrive\documentos\visual studio 2015\Projects\Painter\Painter\PainterContent\obj\x86\Debug\PainterContent.contentprojResolveAssemblyReference.cache
+C:\Users\David Elout\Documents\Git\Painter\Painter\PainterContent\obj\x86\Debug\PainterContent.contentprojResolveAssemblyReference.cache
