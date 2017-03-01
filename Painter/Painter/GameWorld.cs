@@ -41,8 +41,9 @@ namespace Painter
         {
             spriteBatch.Begin();
             spriteBatch.Draw(background, Vector2.Zero, Color.White);
-            cannon.Draw(gameTime, spriteBatch);
             ball.Draw(gameTime, spriteBatch);
+            cannon.Draw(gameTime, spriteBatch);
+            
             spriteBatch.End();
         }
 
@@ -52,6 +53,14 @@ namespace Painter
             ball.HandleInput(inputHelper);
         }
 
+        public bool IsOutsideWorld(Vector2 position)
+        {
+            return position.X < 0 || position.X > Painter.Screen.X || position.Y > Painter.Screen.Y;
+        }
 
+        public void Update(GameTime gameTime)
+        {
+            Ball.Update(gameTime);
+        }
     }
 }

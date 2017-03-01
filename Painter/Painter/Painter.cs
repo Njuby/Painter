@@ -19,27 +19,36 @@ namespace Painter
         SpriteBatch spriteBatch;
         static GameWorld gameWorld;
         InputHelper inputHelper;
-
-        //get color from cannon
-        /*static public Color colortype { get 
-            { 
-                return gameWorld.Cannon.Color; 
-            }
-                }
-                */
-
-        
-
+        static Random random;
+        static Point screen;
 
         public Painter()
+            : base()
         {
-            IsMouseVisible = true;
-           
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            inputHelper = new InputHelper();
+            IsMouseVisible = true;
+            random = new Random();
         }
 
-        static public GameWorld GameWorld { get { return gameWorld; } }
+        static public Point Screen { get
+            {
+                return screen;
+            }
+                }
+
+        static public GameWorld GameWorld { get
+            {
+                return gameWorld;
+            }
+        }
+
+        static public Random Random { get
+            {
+                return random;
+            }
+                }
 
     
         protected override void Initialize()
@@ -65,16 +74,16 @@ namespace Painter
 
             gameWorld.HandleInput(inputHelper);
             inputHelper.Update();
+            GameWorld.Update(gameTime);
             base.Update(gameTime);
             
         }
 
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            // TODO: use this.Content to load your game content here
             gameWorld = new GameWorld(this.Content);
+            screen = new Point(GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
         }
         protected override void Draw(GameTime gameTime)
         {

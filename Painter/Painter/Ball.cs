@@ -35,6 +35,10 @@ namespace Painter
             }
         }        public override void Reset()
         {
+            base.Reset();
+            velocity = Vector2.Zero;
+            position = new Vector2(65, 390);
+            shooting = false;
         }        public override void Update(GameTime gameTime)
         {
             if (shooting)
@@ -42,6 +46,12 @@ namespace Painter
                 velocity.X *= 0.99f;
                 velocity.Y += 6;
             }
+
+            if (Painter.GameWorld.IsOutsideWorld(position))
+            {
+                Reset();
+            }
+
             base.Update(gameTime);
         }
     }
